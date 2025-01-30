@@ -1,8 +1,15 @@
+using Microsoft.AspNetCore.Mvc;
+using MineralResourceAccounting;
+using MySqlConnector;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
+
+builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("AppConnection")!);
+
 
 var app = builder.Build();
 
@@ -14,28 +21,18 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/getminerals",  async ([FromServices] MySqlDataSource db) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
+    var repository = new MineralRepository(db);
+    var minerals = await repository.GetMinerals();
+    return minerals;
+});
 
-app.MapGet("/weatherforecast", () =>
-    {
-        var forecast = Enumerable.Range(1, 5).Select(index =>
-                new WeatherForecast
-                (
-                    DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-                    Random.Shared.Next(-20, 55),
-                    summaries[Random.Shared.Next(summaries.Length)]
-                ))
-            .ToArray();
-        return forecast;
-    })
-    .WithName("GetWeatherForecast");
+app.MapPost("/createmineral", async ([FromServices] MySqlDataSource db, [FromBody] MineralDto body) =>
+{
+    var repository = new MineralRepository(db);
+    await repository.InsertAsync(body);
+    return body;
+} );
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}
