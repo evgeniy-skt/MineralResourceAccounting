@@ -15,7 +15,6 @@ public class MineralRepository(MySqlDataSource database)
 
         return await minerals;
     }
-    
 
     private async Task<IReadOnlyList<MineralDto>> ReadAllAsync(DbDataReader reader)
     {
@@ -40,7 +39,6 @@ public class MineralRepository(MySqlDataSource database)
         return minerals;
     }
 
-
     public async Task<long> InsertAsync(MineralDto mineralDto)
     {
         using var connection = await database.OpenConnectionAsync();
@@ -57,6 +55,21 @@ public class MineralRepository(MySqlDataSource database)
         Console.WriteLine($"Created Mineral: {mineralId}");
         
         return mineralId;
+    }
+    
+    public async Task UpdateAsync(MineralDto mineralDto, Int64 mineralId)
+    {
+        using var connection = await database.OpenConnectionAsync();
+        using var command = connection.CreateCommand();
+        
+        command.CommandText = @"UPDATE Minerals
+                                SET Name = @name, Type = @type, Lat = @lat, Lon = @lon, AreaName = @areaName, ValueM3 = @valueM3
+                                WHERE Id = @mineralId";
+        AddParameters(command, mineralDto);
+        
+        await command.ExecuteScalarAsync();
+
+        Console.WriteLine($"Updated Mineral: {mineralDto.Id}");
     }
     
     private void AddParameters(MySqlCommand command, MineralDto dto)

@@ -35,4 +35,11 @@ app.MapPost("/createmineral", async ([FromServices] MySqlDataSource db, [FromBod
     return body;
 } );
 
+app.MapPut("/updatemineral/{id}", async ([FromServices] MySqlDataSource db, [FromBody] MineralDto updatedMineralDto, Int64 mineralId) =>
+{
+    var repository = new MineralRepository(db);
+    await repository.UpdateAsync(updatedMineralDto, mineralId);
+    return updatedMineralDto;
+} );
+
 app.Run();
