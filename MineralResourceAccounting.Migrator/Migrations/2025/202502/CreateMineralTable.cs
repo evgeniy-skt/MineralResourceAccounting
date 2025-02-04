@@ -14,7 +14,7 @@ public class CreateMineralTable : Migration
             .WithColumn("Lat").AsFloat()
             .WithColumn("Lon").AsFloat()
             .WithColumn("AreaName").AsString()
-            .WithColumn("ValueM3").AsString();
+            .WithColumn("ValueM3").AsInt64();
     }
 
     public override void Down()

@@ -36,6 +36,7 @@ public class MineralRepository(MySqlDataSource database)
                 minerals.Add(mineral);
             }
         }
+
         return minerals;
     }
 
@@ -48,30 +49,30 @@ public class MineralRepository(MySqlDataSource database)
                                 select LAST_INSERT_ID();
                                 ";
         AddParameters(command, mineralDto);
-        
+
         var mineralObj = await command.ExecuteScalarAsync();
         var mineralId = long.Parse(mineralObj.ToString());
 
         Console.WriteLine($"Created Mineral: {mineralId}");
-        
+
         return mineralId;
     }
-    
+
     public async Task UpdateAsync(MineralDto mineralDto, Int64 mineralId)
     {
         using var connection = await database.OpenConnectionAsync();
         using var command = connection.CreateCommand();
-        
-        command.CommandText = @"UPDATE Minerals
-                                SET Name = @name, Type = @type, Lat = @lat, Lon = @lon, AreaName = @areaName, ValueM3 = @valueM3
-                                WHERE Id = @mineralId";
+
+        command.CommandText = @$"UPDATE Minerals
+                                SET Name = @name, Type = @type, lat = @Lat, Lon = @lon, AreaName = @areaName, ValueM3 = @valueM3
+                                WHERE Id = {mineralId}";
         AddParameters(command, mineralDto);
-        
+
         await command.ExecuteScalarAsync();
 
         Console.WriteLine($"Updated Mineral: {mineralDto.Id}");
     }
-    
+
     private void AddParameters(MySqlCommand command, MineralDto dto)
     {
         command.Parameters.AddWithValue("name", dto.Name);
@@ -79,6 +80,6 @@ public class MineralRepository(MySqlDataSource database)
         command.Parameters.AddWithValue("lat", dto.Lat.ToString().Replace(",", "."));
         command.Parameters.AddWithValue("lon", dto.Lat.ToString().Replace(",", "."));
         command.Parameters.AddWithValue("areaName", dto.AreaName);
-        command.Parameters.AddWithValue("volumeM3", dto.ValueM3);
+        command.Parameters.AddWithValue("valueM3", dto.ValueM3);
     }
 }

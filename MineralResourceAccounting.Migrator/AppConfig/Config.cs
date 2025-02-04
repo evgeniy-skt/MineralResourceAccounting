@@ -11,7 +11,7 @@ public static class Config
                 // Add SQLite support to FluentMigrator
                 .AddMySql8()
                 // Set the connection string
-                .WithGlobalConnectionString("server=localhost;port=3309;database=mra;user=root;password=1234")
+                .WithGlobalConnectionString("server=localhost;port=3309;database=mra;user=root;password=1234;allow zero datetime=yes;Allow User Variables=True")
                 // Define the assembly containing the migrations
                 .ScanIn(typeof(Program).Assembly).For.Migrations())
             // Enable logging to console in the FluentMigrator way
