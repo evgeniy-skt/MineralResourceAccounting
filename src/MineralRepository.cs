@@ -70,7 +70,7 @@ public class MineralRepository(MySqlDataSource database)
 
         await command.ExecuteScalarAsync();
 
-        Console.WriteLine($"Updated Mineral: {mineralDto.Id}");
+        Console.WriteLine($"Updated Mineral: {mineralId}");
     }
 
     private void AddParameters(MySqlCommand command, MineralDto dto)
