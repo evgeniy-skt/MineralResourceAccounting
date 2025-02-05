@@ -1,5 +1,8 @@
 # MineralResourceAccounting
 
+## Description
+This application created for storing mineral resource's data.
+
 ## Setup
 1. Clone this repo
 2. Run `docker-compose up -d` in `mineral-resource-accounting` dir
