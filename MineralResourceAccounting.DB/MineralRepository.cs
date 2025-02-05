@@ -1,7 +1,7 @@
 using System.Data.Common;
 using MySqlConnector;
 
-namespace MineralResourceAccounting;
+namespace MineralResourceAccounting.DB;
 
 public class MineralRepository(MySqlDataSource database)
 {

@@ -15,4 +15,9 @@
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.2.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\MineralResourceAccounting.Common\MineralResourceAccounting.Common.csproj" />
+      <ProjectReference Include="..\MineralResourceAccounting.DB\MineralResourceAccounting.DB.csproj" />
+    </ItemGroup>
+
 </Project>
