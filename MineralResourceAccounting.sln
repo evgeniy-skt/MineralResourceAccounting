@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting", "src\MineralResourceAccounting.csproj", "{F2D0A12C-241E-4449-8E6E-547551C51D81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.Controllers", "src\MineralResourceAccounting.Controllers\MineralResourceAccounting.Controllers.csproj", "{F2D0A12C-241E-4449-8E6E-547551C51D81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.Migrator", "MineralResourceAccounting.Migrator\MineralResourceAccounting.Migrator.csproj", "{66E26247-E7E9-41CD-B448-3AA492C7FE44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.Migrator", "src\MineralResourceAccounting.Migrator\MineralResourceAccounting.Migrator.csproj", "{66E26247-E7E9-41CD-B448-3AA492C7FE44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.DB", "MineralResourceAccounting.DB\MineralResourceAccounting.DB.csproj", "{B41EF0ED-E38B-46C2-BAD2-3054720AA519}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.DB", "src\MineralResourceAccounting.DB\MineralResourceAccounting.DB.csproj", "{B41EF0ED-E38B-46C2-BAD2-3054720AA519}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.Common", "MineralResourceAccounting.Common\MineralResourceAccounting.Common.csproj", "{CFBAC2D4-CEC7-42DD-ABCD-F15526F61CAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.Common", "src\MineralResourceAccounting.Common\MineralResourceAccounting.Common.csproj", "{CFBAC2D4-CEC7-42DD-ABCD-F15526F61CAE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
