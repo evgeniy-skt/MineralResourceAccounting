@@ -8,17 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.0"/>
-        <PackageReference Include="MySqlConnector" Version="2.4.0" />
-        <PackageReference Include="MySqlConnector.DependencyInjection" Version="2.4.0" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
         <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="7.2.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="7.2.0" />
         <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.2.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\MineralResourceAccounting.Common\MineralResourceAccounting.Common.csproj" />
-      <ProjectReference Include="..\MineralResourceAccounting.DB\MineralResourceAccounting.DB.csproj" />
+      <ProjectReference Include="..\MRA.Common\MRA.Common.csproj" />
+      <ProjectReference Include="..\MRA.DB\MRA.DB.csproj" />
     </ItemGroup>
 
 </Project>

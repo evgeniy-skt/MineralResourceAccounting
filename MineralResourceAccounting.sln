@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.Controllers", "src\MineralResourceAccounting.Controllers\MineralResourceAccounting.Controllers.csproj", "{F2D0A12C-241E-4449-8E6E-547551C51D81}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRA.Controllers", "src\MRA.Controllers\MRA.Controllers.csproj", "{F2D0A12C-241E-4449-8E6E-547551C51D81}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.Migrator", "src\MineralResourceAccounting.Migrator\MineralResourceAccounting.Migrator.csproj", "{66E26247-E7E9-41CD-B448-3AA492C7FE44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRA.Migrator", "src\MRA.Migrator\MRA.Migrator.csproj", "{66E26247-E7E9-41CD-B448-3AA492C7FE44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.DB", "src\MineralResourceAccounting.DB\MineralResourceAccounting.DB.csproj", "{B41EF0ED-E38B-46C2-BAD2-3054720AA519}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRA.Common", "src\MRA.Common\MRA.Common.csproj", "{30B06681-9437-4804-A5CC-F4F4B9C0D4C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MineralResourceAccounting.Common", "src\MineralResourceAccounting.Common\MineralResourceAccounting.Common.csproj", "{CFBAC2D4-CEC7-42DD-ABCD-F15526F61CAE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MRA.DB", "src\MRA.DB\MRA.DB.csproj", "{DB277CB6-BF22-4699-971B-F68945BE50F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -22,13 +22,13 @@ Global
 		{66E26247-E7E9-41CD-B448-3AA492C7FE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66E26247-E7E9-41CD-B448-3AA492C7FE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66E26247-E7E9-41CD-B448-3AA492C7FE44}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B41EF0ED-E38B-46C2-BAD2-3054720AA519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B41EF0ED-E38B-46C2-BAD2-3054720AA519}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B41EF0ED-E38B-46C2-BAD2-3054720AA519}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B41EF0ED-E38B-46C2-BAD2-3054720AA519}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CFBAC2D4-CEC7-42DD-ABCD-F15526F61CAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFBAC2D4-CEC7-42DD-ABCD-F15526F61CAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFBAC2D4-CEC7-42DD-ABCD-F15526F61CAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFBAC2D4-CEC7-42DD-ABCD-F15526F61CAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30B06681-9437-4804-A5CC-F4F4B9C0D4C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30B06681-9437-4804-A5CC-F4F4B9C0D4C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30B06681-9437-4804-A5CC-F4F4B9C0D4C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30B06681-9437-4804-A5CC-F4F4B9C0D4C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DB277CB6-BF22-4699-971B-F68945BE50F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB277CB6-BF22-4699-971B-F68945BE50F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB277CB6-BF22-4699-971B-F68945BE50F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB277CB6-BF22-4699-971B-F68945BE50F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
