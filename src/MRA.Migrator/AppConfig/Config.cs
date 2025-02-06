@@ -1,5 +1,7 @@
 using FluentMigrator.Runner;
 
+namespace MineralResourceAccounting.Migrator.AppConfig;
+
 public static class Config
 {
     internal static ServiceProvider CreateServices()
