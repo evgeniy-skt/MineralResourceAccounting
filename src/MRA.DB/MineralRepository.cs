@@ -58,7 +58,7 @@ public class MineralRepository(MySqlDataSource database)
         await using var connection = await database.OpenConnectionAsync();
         await using var command = connection.CreateCommand();
         command.CommandText = @"INSERT INTO Minerals (Name, Type, Lat, Lon, AreaName, ValueM3) 
-                                VALUES (@name, @type, @lat, @lon, @areaName, @volumeM3); 
+                                VALUES (@name, @type, @lat, @lon, @areaName, @valueM3); 
                                 select LAST_INSERT_ID();
                                 ";
         AddParameters(command, mineralDto);
