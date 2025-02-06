@@ -17,6 +17,17 @@ public class MineralRepository(MySqlDataSource database)
 
         return await minerals;
     }
+    
+    public async Task<IReadOnlyList<MineralDto>> GetMineral(long mineralId)
+    {
+        await using var connection = await database.OpenConnectionAsync();
+        await using var command = connection.CreateCommand();
+        command.CommandText = $"select * from Minerals where Id = {mineralId};";
+        await using var reader = await command.ExecuteReaderAsync();
+        var minerals = ReadAllAsync(reader);
+
+        return await minerals;
+    }
 
     private async Task<IReadOnlyList<MineralDto>> ReadAllAsync(DbDataReader reader)
     {

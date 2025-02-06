@@ -1,6 +1,14 @@
 @MineralResourceAccounting_HostAddress = http://localhost:5084
 
-GET {{MineralResourceAccounting_HostAddress}}/weatherforecast/
+GET {{MineralResourceAccounting_HostAddress}}/getminerals/
 Accept: application/json
 
 ###
+
+POST {{MineralResourceAccounting_HostAddress}}/createmineral/
+Accept: application/json
+
+###
+
+PUT {{MineralResourceAccounting_HostAddress}}/updatemineral/
+Accept: application/json

@@ -37,6 +37,13 @@ app.MapGet("/getminerals", async ([FromServices] MySqlDataSource db) =>
     return minerals;
 });
 
+app.MapGet("/getmineral/{id}", async ([FromServices] MySqlDataSource db, long mineralId) =>
+{
+    var repository = new MineralRepository(db);
+    var minerals = await repository.GetMineral(mineralId);
+    return minerals;
+});
+
 app.MapPost("/createmineral", async ([FromServices] MySqlDataSource db, [FromBody] MineralDto body) =>
 {
     var repository = new MineralRepository(db);
@@ -45,7 +52,7 @@ app.MapPost("/createmineral", async ([FromServices] MySqlDataSource db, [FromBod
 });
 
 app.MapPut("/updatemineral/{id}",
-    async ([FromServices] MySqlDataSource db, [FromBody] MineralDto updatedMineralDto, Int64 mineralId) =>
+    async ([FromServices] MySqlDataSource db, [FromBody] MineralDto updatedMineralDto, long mineralId) =>
     {
         var repository = new MineralRepository(db);
         await repository.UpdateAsync(updatedMineralDto, mineralId);
