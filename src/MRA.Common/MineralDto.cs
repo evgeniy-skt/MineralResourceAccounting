@@ -1,4 +1,4 @@
-namespace MineralResourceAccounting;
+namespace MRA.Common;
 
 public class MineralDto
 {

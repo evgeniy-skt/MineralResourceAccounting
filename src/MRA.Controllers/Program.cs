@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using MineralResourceAccounting;
-using MineralResourceAccounting.DB;
+using MRA.Common;
+using MRA.DB;
 using MySqlConnector;
 
 var builder = WebApplication.CreateBuilder(args);

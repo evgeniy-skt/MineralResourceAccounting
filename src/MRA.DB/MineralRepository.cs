@@ -1,16 +1,18 @@
+using System.Data;
 using System.Data.Common;
+using MRA.Common;
 using MySqlConnector;
 
-namespace MineralResourceAccounting.DB;
+namespace MRA.DB;
 
 public class MineralRepository(MySqlDataSource database)
 {
     public async Task<IReadOnlyList<MineralDto>> GetMinerals()
     {
-        using var connection = await database.OpenConnectionAsync();
-        using var command = connection.CreateCommand();
+        await using var connection = await database.OpenConnectionAsync();
+        await using var command = connection.CreateCommand();
         command.CommandText = "select * from Minerals;";
-        using var reader = await command.ExecuteReaderAsync();
+        await using var reader = await command.ExecuteReaderAsync();
         var minerals = ReadAllAsync(reader);
 
         return await minerals;
@@ -19,7 +21,7 @@ public class MineralRepository(MySqlDataSource database)
     private async Task<IReadOnlyList<MineralDto>> ReadAllAsync(DbDataReader reader)
     {
         var minerals = new List<MineralDto>();
-        using (reader)
+        await using (reader)
         {
             while (await reader.ReadAsync())
             {
@@ -42,8 +44,8 @@ public class MineralRepository(MySqlDataSource database)
 
     public async Task<long> InsertAsync(MineralDto mineralDto)
     {
-        using var connection = await database.OpenConnectionAsync();
-        using var command = connection.CreateCommand();
+        await using var connection = await database.OpenConnectionAsync();
+        await using var command = connection.CreateCommand();
         command.CommandText = @"INSERT INTO Minerals (Name, Type, Lat, Lon, AreaName, ValueM3) 
                                 VALUES (@name, @type, @lat, @lon, @areaName, @volumeM3); 
                                 select LAST_INSERT_ID();
@@ -51,7 +53,7 @@ public class MineralRepository(MySqlDataSource database)
         AddParameters(command, mineralDto);
 
         var mineralObj = await command.ExecuteScalarAsync();
-        var mineralId = long.Parse(mineralObj.ToString());
+        var mineralId = long.Parse(mineralObj?.ToString() ?? throw new NoNullAllowedException());
 
         Console.WriteLine($"Created Mineral: {mineralId}");
 
@@ -60,8 +62,8 @@ public class MineralRepository(MySqlDataSource database)
 
     public async Task UpdateAsync(MineralDto mineralDto, Int64 mineralId)
     {
-        using var connection = await database.OpenConnectionAsync();
-        using var command = connection.CreateCommand();
+        await using var connection = await database.OpenConnectionAsync();
+        await using var command = connection.CreateCommand();
 
         command.CommandText = @$"UPDATE Minerals
                                 SET Name = @name, Type = @type, lat = @Lat, Lon = @lon, AreaName = @areaName, ValueM3 = @valueM3
@@ -77,8 +79,8 @@ public class MineralRepository(MySqlDataSource database)
     {
         command.Parameters.AddWithValue("name", dto.Name);
         command.Parameters.AddWithValue("type", dto.Type);
-        command.Parameters.AddWithValue("lat", dto.Lat.ToString().Replace(",", "."));
-        command.Parameters.AddWithValue("lon", dto.Lat.ToString().Replace(",", "."));
+        command.Parameters.AddWithValue("lat", dto.Lat.ToString()!.Replace(",", "."));
+        command.Parameters.AddWithValue("lon", dto.Lat.ToString()!.Replace(",", "."));
         command.Parameters.AddWithValue("areaName", dto.AreaName);
         command.Parameters.AddWithValue("valueM3", dto.ValueM3);
     }
