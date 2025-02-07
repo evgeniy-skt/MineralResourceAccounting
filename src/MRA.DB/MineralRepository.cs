@@ -38,13 +38,13 @@ public class MineralRepository(MySqlDataSource database)
             {
                 var mineral = new MineralDto
                 {
-                    Id = reader.GetInt64(0),
-                    Name = reader.GetString(1),
-                    Type = reader.GetString(2),
-                    Lat = reader.GetDecimal(3),
-                    Lon = reader.GetDecimal(4),
-                    AreaName = reader.GetString(5),
-                    ValueM3 = reader.GetInt64(6)
+                    Id = reader.GetInt64("Id"),
+                    Name = reader.GetString("Name"),
+                    Type = reader.GetString("Type"),
+                    Lat = reader.GetDecimal("Latitude"),
+                    Lon = reader.GetDecimal("Longitude"),
+                    AreaName = reader.GetString("AreaName"),
+                    ValueM3 = reader.GetInt64("ValueM3"),
                 };
                 minerals.Add(mineral);
             }
