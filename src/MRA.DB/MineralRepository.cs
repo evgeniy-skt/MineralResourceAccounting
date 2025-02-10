@@ -41,8 +41,8 @@ public class MineralRepository(MySqlDataSource database)
                     Id = reader.GetInt64("Id"),
                     Name = reader.GetString("Name"),
                     Type = reader.GetString("Type"),
-                    Lat = reader.GetDecimal("Latitude"),
-                    Lon = reader.GetDecimal("Longitude"),
+                    Lat = reader.GetDecimal("Lat"),
+                    Lon = reader.GetDecimal("Lon"),
                     AreaName = reader.GetString("AreaName"),
                     ValueM3 = reader.GetInt64("ValueM3"),
                 };

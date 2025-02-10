@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using MineralResourceAccounting.Configuration;
 using MRA.Common;
 using MRA.DB;
 using MySqlConnector;
@@ -7,14 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-builder.Services.AddSwaggerGen(c =>
-{
-    c.SwaggerDoc("v1", new() { Title = "MineralResourceAccounting", Version = "v1" });
-});
-
 builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("AppConnection")!);
-
+builder.Services.AddServices();
 
 var app = builder.Build();
 
