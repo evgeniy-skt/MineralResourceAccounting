@@ -8,8 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddMySqlDataSource(builder.Configuration.GetConnectionString("AppConnection")!);
-builder.Services.AddServices();
+builder.Services.AddServices(builder);
 
 var app = builder.Build();
 
