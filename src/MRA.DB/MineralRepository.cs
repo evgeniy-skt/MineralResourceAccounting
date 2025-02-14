@@ -1,11 +1,12 @@
 using System.Data;
 using System.Data.Common;
+using Microsoft.Extensions.Logging;
 using MRA.Common;
 using MySqlConnector;
 
 namespace MRA.DB;
 
-public class MineralRepository(MySqlDataSource database)
+public class MineralRepository(MySqlDataSource database, ILogger logger)
 {
     public async Task<IReadOnlyList<MineralDto>> GetMinerals()
     {
@@ -14,7 +15,8 @@ public class MineralRepository(MySqlDataSource database)
         command.CommandText = "select * from Minerals;";
         await using var reader = await command.ExecuteReaderAsync();
         var minerals = ReadAllAsync(reader);
-
+        logger.Log(LogLevel.Information, "Minerals retrieved");
+        
         return await minerals;
     }
     
@@ -25,7 +27,8 @@ public class MineralRepository(MySqlDataSource database)
         command.CommandText = $"select * from Minerals where Id = {mineralId};";
         await using var reader = await command.ExecuteReaderAsync();
         var minerals = ReadAllAsync(reader);
-
+        logger.Log(LogLevel.Information, $"Mineral {mineralId} retrieved");
+        
         return await minerals;
     }
 
@@ -62,11 +65,9 @@ public class MineralRepository(MySqlDataSource database)
                                 select LAST_INSERT_ID();
                                 ";
         AddParameters(command, mineralDto);
-
         var mineralObj = await command.ExecuteScalarAsync();
         var mineralId = long.Parse(mineralObj?.ToString() ?? throw new NoNullAllowedException());
-
-        Console.WriteLine($"Created Mineral: {mineralId}");
+        logger.Log(LogLevel.Information, $"Inserting mineral with id={mineralId} to database");
 
         return mineralId;
     }
@@ -82,8 +83,7 @@ public class MineralRepository(MySqlDataSource database)
         AddParameters(command, mineralDto);
 
         await command.ExecuteScalarAsync();
-
-        Console.WriteLine($"Updated Mineral: {mineralId}");
+        logger.Log(LogLevel.Information, $"Mineral with id={mineralId} updated");
     }
 
     private void AddParameters(MySqlCommand command, MineralDto dto)
