@@ -16,10 +16,10 @@ public class MineralRepository(MySqlDataSource database, ILogger logger)
         await using var reader = await command.ExecuteReaderAsync();
         var minerals = ReadAllAsync(reader);
         logger.Log(LogLevel.Information, "Minerals retrieved");
-        
+
         return await minerals;
     }
-    
+
     public async Task<IReadOnlyList<MineralDto>> GetMineral(long mineralId)
     {
         await using var connection = await database.OpenConnectionAsync();
@@ -28,7 +28,7 @@ public class MineralRepository(MySqlDataSource database, ILogger logger)
         await using var reader = await command.ExecuteReaderAsync();
         var minerals = ReadAllAsync(reader);
         logger.Log(LogLevel.Information, $"Mineral {mineralId} retrieved");
-        
+
         return await minerals;
     }
 

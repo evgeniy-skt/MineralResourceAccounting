@@ -11,10 +11,7 @@ public static class ConfigureService
             .AddTransient<MineralRepository>()
             .AddOpenApi()
             .AddMySqlDataSource(builder.Configuration.GetConnectionString("AppConnection")!)
-            .AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new() { Title = "MineralResourceAccounting", Version = "v1" });
-            });
+            .AddSwaggerGen(c => { c.SwaggerDoc("v1", new() { Title = "MineralResourceAccounting", Version = "v1" }); });
         return services;
     }
 }
