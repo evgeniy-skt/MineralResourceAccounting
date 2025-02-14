@@ -24,32 +24,28 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.MapGet("/getminerals", async ([FromServices] MySqlDataSource db) =>
+app.MapGet("/getminerals", async ([FromServices] MySqlDataSource db, [FromServices] MineralRepository mineralRepository) =>
 {
-    var repository = new MineralRepository(db);
-    var minerals = await repository.GetMinerals();
+    var minerals = await mineralRepository.GetMinerals();
     return minerals;
 });
 
-app.MapGet("/getmineral/{id}", async ([FromServices] MySqlDataSource db, long mineralId) =>
+app.MapGet("/getmineral/{id}", async ([FromServices] MySqlDataSource db, [FromServices] MineralRepository mineralRepository, long mineralId) =>
 {
-    var repository = new MineralRepository(db);
-    var minerals = await repository.GetMineral(mineralId);
+    var minerals = await mineralRepository.GetMineral(mineralId);
     return minerals;
 });
 
-app.MapPost("/createmineral", async ([FromServices] MySqlDataSource db, [FromBody] MineralDto body) =>
+app.MapPost("/createmineral", async ([FromServices] MySqlDataSource db, [FromServices] MineralRepository mineralRepository, [FromBody] MineralDto body) =>
 {
-    var repository = new MineralRepository(db);
-    await repository.InsertAsync(body);
+    await mineralRepository.InsertAsync(body);
     return body;
 });
 
 app.MapPut("/updatemineral/{id}",
-    async ([FromServices] MySqlDataSource db, [FromBody] MineralDto updatedMineralDto, long mineralId) =>
+    async ([FromServices] MySqlDataSource db, [FromServices] MineralRepository mineralRepository, [FromBody] MineralDto updatedMineralDto, long mineralId) =>
     {
-        var repository = new MineralRepository(db);
-        await repository.UpdateAsync(updatedMineralDto, mineralId);
+        await mineralRepository.UpdateAsync(updatedMineralDto, mineralId);
         return updatedMineralDto;
     });
 
